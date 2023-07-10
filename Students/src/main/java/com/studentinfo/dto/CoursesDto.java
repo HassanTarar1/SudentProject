@@ -1,27 +1,17 @@
 package com.studentinfo.dto;
 
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-
-
 public class CoursesDto {
-
     private String subject;
+    private Long studentId;
 
-    @Column(name = "student_id")
-    @JoinColumn(name = "id", referencedColumnName = "id")
-    private Long student_id;
-
-    public CoursesDto(String subject, Long student_id) {
-        this.subject = subject;
-        this.student_id = student_id;
+    public CoursesDto() {
     }
 
-
-
-    public CoursesDto() {}
-
+    public CoursesDto(String subject, Long studentId) {
+        this.subject = subject;
+        this.studentId = studentId;
+    }
 
     public String getSubject() {
         return subject;
@@ -31,19 +21,19 @@ public class CoursesDto {
         this.subject = subject;
     }
 
-
-    public Long getStudent_id() {
-        return student_id;
+    public Long getStudentId() {
+        return studentId;
     }
 
-    public void setStudent_id(Long student_id) {
-        this.student_id = student_id;
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
     }
 
     @Override
     public String toString() {
-        return "Courses{" +
-                ", subjects='" + subject + '\'' +
-                '}';
+        return "CoursesDto[" +
+                "subject='" + subject + '\'' +
+                ", studentId=" + studentId +
+                ']';
     }
 }

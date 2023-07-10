@@ -1,7 +1,5 @@
 package com.studentinfo.model;
 
-
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -16,12 +14,12 @@ public class Courses {
 
     @Column(name = "student_id")
     @JoinColumn(name = "id", referencedColumnName = "id")
-    private Long student_id;
+    private Long studentId;
 
-    public Courses(Long id, String subject, Long student_id) {
+    public Courses(Long id, String subject, Long studentId) {
         this.id = id;
         this.subject = subject;
-        this.student_id = student_id;
+        this.studentId = studentId;
     }
 
     public Courses() {
@@ -44,12 +42,12 @@ public class Courses {
         this.subject = subject;
     }
 
-    public Long getStudent_id() {
-        return student_id;
+    public Long getStudentId() {
+        return studentId;
     }
 
-    public void setStudent_id(Long student_id) {
-        this.student_id = student_id;
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
     }
 
     @Override
@@ -57,7 +55,7 @@ public class Courses {
         return "Courses{" +
                 "id=" + id +
                 ", subject='" + subject + '\'' +
-                ", student_id=" + student_id +
+                ", studentId=" + studentId +
                 '}';
     }
 }

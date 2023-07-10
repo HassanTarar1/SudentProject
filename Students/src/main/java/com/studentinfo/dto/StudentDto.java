@@ -2,30 +2,21 @@ package com.studentinfo.dto;
 
 import com.studentinfo.model.Courses;
 
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import java.util.List;
 
 
 public class StudentDto {
-
-
     private String firstName; // camel case
     private String lastName;
     private double gpa;
-
-
-    @OneToMany(targetEntity = Courses.class, cascade = CascadeType.ALL)
-    @JoinColumn(name="student_id", referencedColumnName = "id")
     private List<Courses> courses;
 
-    public StudentDto(String firstName, String lastname, double gpa) {
+    public StudentDto(String firstName, String lastName, double gpa) {
         this.firstName = firstName;
         this.lastName = lastName;
-
         this.gpa = gpa;
     }
+
     public StudentDto() {
 
     }

@@ -1,8 +1,5 @@
 package com.studentinfo.model;
 
-
-
-
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -14,7 +11,6 @@ import java.util.Set;
 @Entity
 @ValidateOnExecution
 public class Student {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -30,14 +26,13 @@ public class Student {
     private double gpa;
 
     @OneToMany(targetEntity = Courses.class, cascade = CascadeType.ALL)
-    @JoinColumn(name="student_id", referencedColumnName = "id")
+    @JoinColumn(name = "student_id", referencedColumnName = "id")
     private Set<Courses> courses;
 
     public Student(long id, String firstName, String lastname, double gpa) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-
         this.gpa = gpa;
     }
 
@@ -92,7 +87,6 @@ public class Student {
     public void setCourses(Set<Courses> courses) {
         this.courses = courses;
     }
-
 
     @Override
     public String toString() {
