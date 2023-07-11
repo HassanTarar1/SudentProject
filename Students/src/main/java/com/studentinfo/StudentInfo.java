@@ -13,10 +13,13 @@ public class StudentInfo {
 
 	public static void main(String[] args) {
 		SpringApplication.run(StudentInfo.class, args);
+
+
 	}
 	@Bean
 	public ModelMapper modelMapper() {
 		return new ModelMapper();
 	}
+
 
 }

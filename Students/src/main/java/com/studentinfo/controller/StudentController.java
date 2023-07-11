@@ -1,8 +1,11 @@
 package com.studentinfo.controller;
 
 import com.studentinfo.dto.StudentDto;
+import com.studentinfo.exception.CourseNotFoundException;
 import com.studentinfo.exception.StudentNotFoundException;
+import com.studentinfo.model.Courses;
 import com.studentinfo.model.Student;
+import com.studentinfo.repository.CoursesRepository;
 import com.studentinfo.repository.StudentRepository;
 import com.studentinfo.service.StudentService;
 import org.springframework.http.HttpStatus;
@@ -17,10 +20,12 @@ import java.util.List;
 public class StudentController {
     private final StudentRepository studentRepository;
     private final StudentService studentService;
+    private final CoursesRepository coursesRepository;
 
-    public StudentController(StudentRepository studentRepository, StudentService studentService) {
+    public StudentController(StudentRepository studentRepository, StudentService studentService, CoursesRepository coursesRepository) {
         this.studentRepository = studentRepository;
         this.studentService = studentService;
+        this.coursesRepository = coursesRepository;
     }
 
     @PostMapping("/students")
@@ -43,4 +48,31 @@ public class StudentController {
         studentRepository.deleteAll();
         return "Deleted Successfully";
     }
+
+    @DeleteMapping("/delete/{id}")
+    public String DeleteStudentById(@PathVariable Long id) throws StudentNotFoundException {
+        try {
+            studentRepository.deleteById(id);
+            return ("record has been deleted successfully at id:" + id );
+        } catch (Exception e) {
+            throw  new StudentNotFoundException("student not found at: "+ id);
+        }
+    }
+
+
+    @DeleteMapping("/delete/course/{id}")
+    public String DeleteCourseById(@PathVariable Long id) throws CourseNotFoundException {
+
+
+        try {
+            coursesRepository.deleteById(id);
+            return ("record has been deleted successfully at id:" + id );
+        } catch (Exception e) {
+            throw  new CourseNotFoundException("course not found at: "+ id);
+        }
+
+
+    }
+
+
 }

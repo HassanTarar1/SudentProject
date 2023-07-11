@@ -1,5 +1,6 @@
 package com.studentinfo.advice;
 
+import com.studentinfo.exception.CourseNotFoundException;
 import com.studentinfo.exception.StudentNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -30,4 +31,15 @@ public class ApplicationExceptionHandler {
         errorMap.put("errorMessage", ex.getMessage());
         return errorMap;
     }
+
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(CourseNotFoundException.class)
+    public Map<String, String> handleBusinessException(CourseNotFoundException ex) {
+        Map<String, String> errorMap = new HashMap<>();
+        errorMap.put("errorMessage", ex.getMessage());
+        return errorMap;
+    }
+
+
 }
